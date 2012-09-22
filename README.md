@@ -20,7 +20,7 @@ Ace Plugin can be installed into your WolfCMS by uploading it to ***CMS_ROOT/wol
 Changelog
 ---------
 
-0.0.1
+0.0.2
 
 - first release
 
