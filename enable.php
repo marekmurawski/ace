@@ -20,7 +20,7 @@ if (!defined('IN_CMS')) { exit(); }
 
     $settings = array('aceMode' => 'php',
                       'aceTheme' => 'monokai',
-                      'aceFontSize' => 10,
+                      'aceFontSize' => 12,
                       'aceScrollSpeed' => 6,
                       'aceEditorHeight' => 400,
                       'aceWrapLines' => 'false',
