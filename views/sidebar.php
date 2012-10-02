@@ -18,7 +18,7 @@
 /* Security measure */
 if (!defined('IN_CMS')) { exit(); }
 ?>
-<p class="button"><a href="<?php echo get_url('plugin/ace/settings'); ?>"><img src="<?php echo URL_PUBLIC; ?>wolf/plugins/tinymce/images/settings.png" align="middle" /><?php echo __('Settings'); ?></a></p>
+<p class="button"><a href="<?php echo get_url('plugin/ace/settings'); ?>"><img src="<?php echo URL_PUBLIC; ?>wolf/icons/settings-32.png" align="middle" /><?php echo __('Settings'); ?></a></p>
 <div class="box">
 <h2><?php echo Plugin::$plugins_infos['ace']->title;?></h2>
 <p>
