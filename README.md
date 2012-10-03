@@ -22,14 +22,14 @@ Ace Plugin can be installed into your WolfCMS by uploading it to ***CMS_ROOT/wol
 Changelog
 ---------
 
-0.0.3
+0.0.4
 
 - fixed issues with multiple page parts editing
 - per-page syntax highlighting mode storage
 - per-page scroll position storage
 - added icon to jump to global editor settings
 - added notification in case of wrong settings file permissions
-- fixed settings icon (thx Fortron)
+- fixed settings icon (thx David)
 
 0.0.2
 
