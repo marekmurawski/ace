@@ -10,6 +10,8 @@ Features
 * css, html, javascript, json, markdown, php, text, textile and xml modes
 * custom ***font size***, ***line wrapping*** length, editor window height
 * integrates with ***page part, snippet*** and (optionally) ***layout*** editing windows
+* ***keeps scroll*** position in ***every*** editor instance
+* ***keeps syntax highlighting mode in every*** editor instance
 
 
 Installation
@@ -19,6 +21,15 @@ Ace Plugin can be installed into your WolfCMS by uploading it to ***CMS_ROOT/wol
 
 Changelog
 ---------
+
+0.0.3
+
+- fixed issues with multiple page parts editing
+- per-page syntax highlighting mode storage
+- per-page scroll position storage
+- added icon to jump to global editor settings
+- added notification in case of wrong settings file permissions
+- fixed settings icon (thx Fortron)
 
 0.0.2
 

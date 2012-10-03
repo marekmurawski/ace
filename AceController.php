@@ -70,6 +70,11 @@ class AceController extends PluginController {
         var aceLayoutIntegrate = '. strip_tags($_POST['aceLayoutIntegrate']) .';
         var aceCookieLife = '. intval($_POST['aceCookieLife']) .';
         ';
+
+        if (file_exists($configFile)) {
+            if (@!chmod($configFile, octdec('0777')))
+                Flash::set('error', __('Could not change ace_config.js file permissions to 0777. Do it manually!'));
+        }      
       
       if (file_put_contents($configFile, $conf)) {
         if (Plugin::setAllSettings($_POST, 'ace')) {

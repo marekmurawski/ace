@@ -23,7 +23,7 @@ if (!defined('IN_CMS')) { exit(); }
                       'aceFontSize' => 12,
                       'aceScrollSpeed' => 6,
                       'aceEditorHeight' => 400,
-                      'aceWrapLines' => 'false',
+                      'aceWrapLines' => 'true',
                       'aceWrapRange' => 80,
                       'aceLayoutIntegrate' => 'true',
                       'aceCookieLife' => '365',  // in days, -1 defaults to Session cookie

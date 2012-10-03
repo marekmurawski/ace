@@ -10,7 +10,7 @@
         var aceFontSize = 12;
         var aceScrollSpeed = 6;
         var aceEditorHeight = 400;
-        var aceWrapLines = false;
+        var aceWrapLines = true;
         var aceWrapRange = 80;
         var aceLayoutIntegrate = true;
         var aceCookieLife = 365;
