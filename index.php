@@ -49,4 +49,5 @@ if ( AuthUser::hasPermission('admin_view')&&Plugin::isEnabled('ace') ) {
 //        Plugin::addJavascript('ace', 'build/src-min/mode-textile.js');
 //        Plugin::addJavascript('ace', 'build/src-min/mode-javascript.js');
         Plugin::addJavascript('ace', 'ace_config.js');
+        Plugin::addJavascript('ace', 'js/jquery.cookie.js');
 }
