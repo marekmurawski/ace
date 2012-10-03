@@ -9,9 +9,9 @@
         var aceTheme = "monokai";
         var aceFontSize = 12;
         var aceScrollSpeed = 6;
-        var aceEditorHeight = 290;
-        var aceWrapLines = true;
-        var aceWrapRange = 136;
+        var aceEditorHeight = 400;
+        var aceWrapLines = false;
+        var aceWrapRange = 80;
         var aceLayoutIntegrate = true;
-        var aceCookieLife = -1;
+        var aceCookieLife = 365;
         

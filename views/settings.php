@@ -99,13 +99,13 @@ if (!defined('IN_CMS')) { exit(); }
                 <td class="field">
                   <select name="aceCookieLife" id="aceCookieLife">
                     <option value="-1" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='-1')) ? 'selected="selected"' : ''; ?>><?php echo __('Session-long'); ?></option>
-                    <option value="1" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='3600')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Day'); ?></option>
-                    <option value="2" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='21600')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Days'); ?></option>
-                    <option value="7" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='43200')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Week'); ?></option>
-                    <option value="14" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='86400')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Weeks'); ?></option>
-                    <option value="28" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='604800')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Month'); ?></option>
-                    <option value="365" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='2419200')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Year'); ?></option>
-                    <option value="3650" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='31536000')) ? 'selected="selected"' : ''; ?>><?php echo __('10 Years'); ?></option>
+                    <option value="1" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='1')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Day'); ?></option>
+                    <option value="2" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='2')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Days'); ?></option>
+                    <option value="7" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='7')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Week'); ?></option>
+                    <option value="14" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='14')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Weeks'); ?></option>
+                    <option value="28" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='28')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Month'); ?></option>
+                    <option value="365" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='365')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Year'); ?></option>
+                    <option value="3650" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='3650')) ? 'selected="selected"' : ''; ?>><?php echo __('10 Years'); ?></option>
                   </select>
                 </td>
                 <td class="help"><?php echo __('Individual settings for page parts, layouts and snippets - scroll position and syntax mode will be stored in cookie of your browser. Choose the default lifetime of such cookie.'); ?></td>

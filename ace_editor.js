@@ -162,10 +162,10 @@ $(document).ready(function() {
   });
   
   $('.filter-selector').live('wolfSwitchFilterOut', function(event, filtername, elem) {
+    partID = elem.attr('id').slice(5, -8);
     if (filtername == 'ace') {
     $('#'+elem.attr('id')).show();
     if ($('#pagetitle').length > 0) { // we are in PAGE
-           partID = elem.attr('id').slice(5, -8);
            $('#aceeditor' + partID).remove();
            $('#aceoptions' + partID).remove();
            Aces[partID] = 'switchedOut';
@@ -177,13 +177,13 @@ $(document).ready(function() {
            aceEditors[1] = false;
     }           
     }
-    
+    if (filtername=='') {Aces[partID] = 'switchedOut';};
   });
     
   $('.filter-selector').live('wolfSwitchFilterIn', function(event, filtername, elem) {
+    partID = elem.attr('id').slice(5, -8);
     if (filtername == 'ace') {
       if ($('#pagetitle').length > 0) { // we are in PAGE
-        partID = elem.attr('id').slice(5, -8);
         if (Aces[partID] == 'switchedOut') {
           insertPageAce(elem);
         } else {
@@ -194,8 +194,12 @@ $(document).ready(function() {
         insertSnippetAce();
       }
     }
+    else {
+      Aces[partID] = 'switchedOut';
+    }
   });    
-    
+
+// needed to provide ace activation after adding part
  $('#add-part-button').live('click', function(){
    ind = Aces.length;
    Aces[ind] = 'switchedOut';

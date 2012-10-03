@@ -41,7 +41,6 @@ if ( AuthUser::hasPermission('admin_view')&&Plugin::isEnabled('ace') ) {
         Plugin::addController('ace', 'ace', 'administrator,developer', false);
 
     $uri = pathinfo($_SERVER['QUERY_STRING'], PATHINFO_DIRNAME);
-    // include only when the user is going to edit
     if ( preg_match('/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/',$uri,$match) ) {
         Plugin::addJavascript('ace', 'ace_editor.js');
         Plugin::addJavascript('ace', 'build/src-min/ace.js');
