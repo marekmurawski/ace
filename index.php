@@ -28,7 +28,7 @@ Plugin::setInfos(array(
 		'id'          => 'ace',
 		'title'       => 'Ace filter for Wolf CMS',
 		'description' => __('Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.'),
-		'version'     => '0.0.2',
+		'version'     => '0.0.3',
 			'license'     => 'GPL',
 			'author'      => 'Marek Murawski',
 		'website'     => 'http://marekmurawski.pl/',
@@ -40,14 +40,12 @@ if ( AuthUser::hasPermission('admin_view')&&Plugin::isEnabled('ace') ) {
         Filter::add('ace', 'ace/filter_ace.php');
         Plugin::addController('ace', 'ace', 'administrator,developer', false);
 
+    $uri = pathinfo($_SERVER['QUERY_STRING'], PATHINFO_DIRNAME);
+    // include only when the user is going to edit
+    if ( preg_match('/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/',$uri,$match) ) {
+        Plugin::addJavascript('ace', 'ace_editor.js');
         Plugin::addJavascript('ace', 'build/src-min/ace.js');
-// seems Ace loads neccesary files automatically
-//        Plugin::addJavascript('ace', 'build/src-min/mode-php.js');
-//        Plugin::addJavascript('ace', 'build/src-min/mode-css.js');
-//        Plugin::addJavascript('ace', 'build/src-min/mode-html.js');
-//        Plugin::addJavascript('ace', 'build/src-min/mode-markdown.js');
-//        Plugin::addJavascript('ace', 'build/src-min/mode-textile.js');
-//        Plugin::addJavascript('ace', 'build/src-min/mode-javascript.js');
         Plugin::addJavascript('ace', 'ace_config.js');
         Plugin::addJavascript('ace', 'js/jquery.cookie.js');
+    }
 }

@@ -68,6 +68,7 @@ class AceController extends PluginController {
         var aceWrapLines = '. strip_tags($_POST['aceWrapLines']) .';
         var aceWrapRange = '. strip_tags($_POST['aceWrapRange']) .';
         var aceLayoutIntegrate = '. strip_tags($_POST['aceLayoutIntegrate']) .';
+        var aceCookieLife = '. intval($_POST['aceCookieLife']) .';
         ';
       
       if (file_put_contents($configFile, $conf)) {

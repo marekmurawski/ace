@@ -6,11 +6,12 @@
          */
            
         var aceMode = "php";
-        var aceTheme = "merbivore";
+        var aceTheme = "monokai";
         var aceFontSize = 12;
         var aceScrollSpeed = 6;
-        var aceEditorHeight = 420;
+        var aceEditorHeight = 290;
         var aceWrapLines = true;
-        var aceWrapRange = 52;
+        var aceWrapRange = 136;
         var aceLayoutIntegrate = true;
+        var aceCookieLife = -1;
         

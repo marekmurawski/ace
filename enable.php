@@ -26,6 +26,7 @@ if (!defined('IN_CMS')) { exit(); }
                       'aceWrapLines' => 'false',
                       'aceWrapRange' => 80,
                       'aceLayoutIntegrate' => 'true',
+                      'aceCookieLife' => '-1',  // -1 defaults to Session cookie
     );
 
     // Store settings.
