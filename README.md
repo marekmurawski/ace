@@ -22,6 +22,11 @@ Ace Plugin can be installed into your WolfCMS by uploading it to ***CMS_ROOT/wol
 Changelog
 ---------
 
+0.0.5
+
+- added option to toggle active line highlighting
+- corrected selection color in monokai theme
+
 0.0.4
 
 - fixed issues with multiple page parts editing

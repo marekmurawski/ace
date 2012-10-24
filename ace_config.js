@@ -13,5 +13,6 @@
         var aceWrapLines = true;
         var aceWrapRange = 80;
         var aceLayoutIntegrate = true;
+        var aceHighlightActiveLine = true;
         var aceCookieLife = 365;
         

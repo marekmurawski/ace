@@ -55,7 +55,7 @@ function insertPageAce(elem)  {
         editor.setScrollSpeed(aceScrollSpeed);
         editor.setFontSize(aceFontSize+'px');
         editor.setPrintMarginColumn(aceWrapRange);
-        editor.setHighlightActiveLine(true);
+        editor.setHighlightActiveLine(aceHighlightActiveLine);
         editor.setHighlightSelectedWord(true);
       var textarea = $('#part_'+partID+'_content');
         textarea.hide();
@@ -100,7 +100,7 @@ function insertSnippetAce()  {
         editor.setScrollSpeed(aceScrollSpeed);
         editor.setFontSize(aceFontSize+'px');
         editor.setPrintMarginColumn(aceWrapRange);
-        editor.setHighlightActiveLine(true);
+        editor.setHighlightActiveLine(aceHighlightActiveLine);
         editor.setHighlightSelectedWord(true);
       var textarea = $('#snippet_content');
         textarea.hide();
@@ -225,7 +225,7 @@ if (($("#layout_content").length > 0)&&(typeof(setCM) === 'undefined')&&(aceLayo
         editor.setScrollSpeed(aceScrollSpeed);
         editor.setFontSize(aceFontSize+'px');
         editor.setPrintMarginColumn(aceWrapRange);
-        editor.setHighlightActiveLine(true);
+        editor.setHighlightActiveLine(aceHighlightActiveLine);
         editor.setHighlightSelectedWord(true);
       var textarea = $('#layout_content');
         textarea.hide();

@@ -69,6 +69,16 @@ if (!defined('IN_CMS')) { exit(); }
                 <td class="help"><?php echo __('Default editor box height in pixels'); ?></td>
             </tr>
             <tr>
+                <td class="label"><label><?php echo __('Highlight active line'); ?> </label></td>
+                <td class="field">
+                  <select name="aceHighlightActiveLine" id="aceHighlightActiveLine">
+                    <option value="true" <?php echo (isset($settings['aceHighlightActiveLine'])&&($settings['aceHighlightActiveLine']=='true')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes');?></option>
+                    <option value="false" <?php echo (isset($settings['aceHighlightActiveLine'])&&($settings['aceHighlightActiveLine']=='false')) ? 'selected="selected"' : ''; ?>><?php echo __('No');?></option>
+                  </select>
+                </td>
+                <td class="help"><?php echo __('Default editor box height in pixels'); ?></td>
+            </tr>
+            <tr>
                 <td class="label"><label><?php echo __('Wrap lines'); ?> </label></td>
                 <td class="field">
                   <select name="aceWrapLines" id="aceWrapLines">
@@ -147,7 +157,8 @@ function updatePreview() {
         editor.setFontSize($('#aceFontSize').val()+'px');
         
         editor.setPrintMarginColumn($('#aceWrapRange').val());
-        editor.setHighlightActiveLine(true);
+        doHighlight = ($('#aceHighlightActiveLine').val()=='true') ? true : false;
+        editor.setHighlightActiveLine(doHighlight);
         editor.setHighlightSelectedWord(true);
         editor.getSession().setWrapLimitRange($('#aceWrapRange').val(),$('#aceWrapRange').val());
         doWrap = ($('#aceWrapLines').val()=='true') ? true : false;
