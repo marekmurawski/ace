@@ -25,7 +25,8 @@ Changelog
 0.0.5
 
 - added option to toggle active line highlighting
-- corrected selection color in monokai theme
+- corrected selection color in monokai theme to black
+- added new theme - Sublime Monokai - by NicNLD
 
 0.0.4
 
