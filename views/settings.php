@@ -76,7 +76,7 @@ if (!defined('IN_CMS')) { exit(); }
                     <option value="false" <?php echo (isset($settings['aceHighlightActiveLine'])&&($settings['aceHighlightActiveLine']=='false')) ? 'selected="selected"' : ''; ?>><?php echo __('No');?></option>
                   </select>
                 </td>
-                <td class="help"><?php echo __('Default editor box height in pixels'); ?></td>
+                <td class="help"></td>
             </tr>
             <tr>
                 <td class="label"><label><?php echo __('Wrap lines'); ?> </label></td>

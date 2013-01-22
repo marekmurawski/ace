@@ -11,6 +11,7 @@ Features
 * custom ***font size***, ***line wrapping*** length, editor window height
 * integrates with ***page part, snippet*** and (optionally) ***layout*** editing windows
 * ***keeps scroll*** position in ***every*** editor instance
+* ***keeps cursor*** position in ***every*** editor instance
 * ***keeps syntax highlighting mode in every*** editor instance
 
 
@@ -24,9 +25,13 @@ Changelog
 
 0.0.5
 
+- the editor now stores text cursor position and gets focus automatically
+- bugfixes for scroll position persistence
 - added option to toggle active line highlighting
 - corrected selection color in monokai theme to black
 - added new theme - Sublime Monokai - by NicNLD
+- added dutch translation - by NicNLD
+- some js code refactoring
 
 0.0.4
 

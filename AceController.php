@@ -15,7 +15,7 @@
  * @license Ace http://opensource.org/licenses/BSD-3-Clause BSD
  * 
  */
-/* Security measure */
+
 if (!defined('IN_CMS')) { exit(); }
 
 class AceController extends PluginController {
