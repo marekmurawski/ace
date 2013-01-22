@@ -23,7 +23,7 @@ Ace Plugin can be installed into your WolfCMS by uploading it to ***CMS_ROOT/wol
 Changelog
 ---------
 
-0.0.5
+0.0.6
 
 - the editor now stores text cursor position and gets focus automatically
 - bugfixes for scroll position persistence
