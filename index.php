@@ -2,10 +2,10 @@
 /*
  * Wolf CMS - Content Management Simplified. <http://www.wolfcms.org>
  * Copyright (C) 2008-2010 Martijn van der Kleijn <martijn.niji@gmail.com>
- * 
+ *
  * Ace filter for Wolf CMS
  * Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.
- *  
+ *
  * @package Plugins
  * @subpackage ace
  *
@@ -13,7 +13,7 @@
  * @copyright Marek Murawski, 2012
  * @license http://www.gnu.org/licenses/gpl.html GPLv3 license
  * @license Ace http://opensource.org/licenses/BSD-3-Clause BSD
- * 
+ *
  */
 
 /* Security measure */
@@ -28,7 +28,7 @@ Plugin::setInfos(array(
 		'id'          => 'ace',
 		'title'       => 'Ace filter for Wolf CMS',
 		'description' => __('Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.'),
-		'version'     => '0.0.6',
+		'version'     => '0.0.7',
 			'license'     => 'GPL',
 			'author'      => 'Marek Murawski',
 		'website'     => 'http://marekmurawski.pl/',

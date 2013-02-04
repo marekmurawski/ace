@@ -13,6 +13,7 @@ Features
 * ***keeps scroll*** position in ***every*** editor instance
 * ***keeps cursor*** position in ***every*** editor instance
 * ***keeps syntax highlighting mode in every*** editor instance
+* ***live PHP syntax checking***
 
 
 Installation
@@ -22,6 +23,12 @@ Ace Plugin can be installed into your WolfCMS by uploading it to ***CMS_ROOT/wol
 
 Changelog
 ---------
+
+0.0.7
+
+- updated Ace to current build
+- live PHP syntax checking
+- some more bugfixes
 
 0.0.6
 
