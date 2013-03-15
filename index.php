@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Wolf CMS - Content Management Simplified. <http://www.wolfcms.org>
  * Copyright (C) 2008-2010 Martijn van der Kleijn <martijn.niji@gmail.com>
@@ -17,34 +18,47 @@
  */
 
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
-
-if(!defined("ACEDIR"))
-{
-	define('ACEDIR', PLUGINS_ROOT.'/ace');
+if ( !defined( 'IN_CMS' ) ) {
+    exit();
 }
 
-Plugin::setInfos(array(
-		'id'          => 'ace',
-		'title'       => 'Ace filter for Wolf CMS',
-		'description' => __('Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.'),
-		'version'     => '0.0.7',
-			'license'     => 'GPL',
-			'author'      => 'Marek Murawski',
-		'website'     => 'http://marekmurawski.pl/',
-		'update_url'  => 'http://marekmurawski.pl/static/wolfplugins/plugin-versions.xml',
-		'require_wolf_version' => '0.7.3' // 0.7.5SP-1 fix -> downgrading requirement to 0.7.3
-));
+if ( !defined( "ACEDIR" ) ) {
+    define( 'ACEDIR', PLUGINS_ROOT . '/ace' );
+}
 
-if ( AuthUser::hasPermission('admin_view')&&Plugin::isEnabled('ace') ) {
-        Filter::add('ace', 'ace/filter_ace.php');
-        Plugin::addController('ace', 'ace', 'administrator,developer', false);
+Plugin::setInfos( array(
+            'id'                   => 'ace',
+            'title'                => 'Ace filter for Wolf CMS',
+            'description'          => __( 'Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.' ),
+            'version'              => '0.0.7',
+            'license'              => 'GPL',
+            'author'               => 'Marek Murawski',
+            'website'              => 'http://marekmurawski.pl/',
+            'update_url'           => 'http://marekmurawski.pl/static/wolfplugins/plugin-versions.xml',
+            'require_wolf_version' => '0.7.3' // 0.7.5SP-1 fix -> downgrading requirement to 0.7.3
+) );
 
-    $uri = pathinfo($_SERVER['QUERY_STRING'], PATHINFO_DIRNAME);
-    if ( preg_match('/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/',$uri,$match) ) {
-        Plugin::addJavascript('ace', 'ace_editor.js');
-        Plugin::addJavascript('ace', 'build/src-min/ace.js');
-        Plugin::addJavascript('ace', 'ace_config.js');
-        Plugin::addJavascript('ace', 'js/jquery.cookie.js');
+if ( AuthUser::hasPermission( 'admin_view' ) && Plugin::isEnabled( 'ace' ) ) {
+    Filter::add( 'ace', 'ace/filter_ace.php' );
+    Plugin::addController( 'ace', 'ace', 'administrator,developer', true );
+    Observer::observe( 'view_backend_list_plugin', 'store_ace_settings' );
+
+    $uri = pathinfo( $_SERVER['QUERY_STRING'], PATHINFO_DIRNAME );
+    if ( preg_match( '/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/', $uri, $match ) ) {
+        Plugin::addJavascript( 'ace', 'ace_editor.js' );
+        Plugin::addJavascript( 'ace', 'build/src-min/ace.js' );
+        Plugin::addJavascript( 'ace', 'ace_config.js' );
+        Plugin::addJavascript( 'ace', 'js/jquery.cookie.js' );
     }
+}
+
+function store_ace_settings( $plugin_name) {
+    if ( $plugin_name === 'ace' ) {
+        echo '<div id="ace-live-settings" style="display: none;" ';
+        foreach (Plugin::getAllSettings('ace') as $key=>$value) {
+            echo ' data-'.$key . '="' . $value . '"';
+        }
+        echo '></div>';
+    }
+
 }

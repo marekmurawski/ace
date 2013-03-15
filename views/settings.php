@@ -50,21 +50,21 @@ if (!defined('IN_CMS')) { exit(); }
             <tr>
                 <td class="label"><label><?php echo __('Font size'); ?> </label></td>
                 <td class="field">
-                  <input type="number" id="aceFontSize" name="aceFontSize" min="7" max="18" step="1" value="<?php echo isset($settings['aceFontSize']) ? $settings['aceFontSize'] : 11; ?>"> px
+                  <input type="number" id="aceFontSize" name="aceFontSize" min="7" max="18" step="1" value="<?php echo isset($settings['aceFontSize']) ? $settings['aceFontSize'] : 11; ?>"> <?php echo __('px'); ?>
                 </td>
                 <td class="help"><?php echo __('Editor font size in pixels.'); ?></td>
             </tr>
             <tr>
                 <td class="label"><label><?php echo __('Mouse scroll speed'); ?> </label></td>
                 <td class="field">
-                  <input type="number" id="aceScrollSpeed" name="aceScrollSpeed" min="1" max="10" step="1" value="<?php echo isset($settings['aceScrollSpeed']) ? $settings['aceScrollSpeed'] : 3; ?>"> lines
+                  <input type="number" id="aceScrollSpeed" name="aceScrollSpeed" min="1" max="10" step="1" value="<?php echo isset($settings['aceScrollSpeed']) ? $settings['aceScrollSpeed'] : 3; ?>"> <?php echo __('lines'); ?>
                 </td>
                 <td class="help"><?php echo __('How fast should your mousewheel scroll the editor'); ?></td>
             </tr>
             <tr>
                 <td class="label"><label><?php echo __('Editor height'); ?> </label></td>
                 <td class="field">
-                  <input type="number" id="aceEditorHeight" name="aceEditorHeight" min="100" max="1000" step="10" value="<?php echo isset($settings['aceEditorHeight']) ? $settings['aceEditorHeight'] : 300; ?>"> px
+                  <input type="number" id="aceEditorHeight" name="aceEditorHeight" min="100" max="1000" step="10" value="<?php echo isset($settings['aceEditorHeight']) ? $settings['aceEditorHeight'] : 300; ?>"> <?php echo __('px'); ?>
                 </td>
                 <td class="help"><?php echo __('Default editor box height in pixels'); ?></td>
             </tr>
@@ -84,8 +84,8 @@ if (!defined('IN_CMS')) { exit(); }
                   <select name="aceWrapLines" id="aceWrapLines">
                     <option value="true" <?php echo (isset($settings['aceWrapLines'])&&($settings['aceWrapLines']=='true')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes');?></option>
                     <option value="false" <?php echo (isset($settings['aceWrapLines'])&&($settings['aceWrapLines']=='false')) ? 'selected="selected"' : ''; ?>><?php echo __('No');?></option>
-                  </select> at 
-                  <input type="number" id="aceWrapRange" name="aceWrapRange" min="20" max="200" step="4" value="<?php echo isset($settings['aceWrapRange']) ? $settings['aceWrapRange'] : 80; ?>"> columns
+                  </select> <?php echo __('at'); ?> 
+                  <input type="number" id="aceWrapRange" name="aceWrapRange" min="20" max="200" step="4" value="<?php echo isset($settings['aceWrapRange']) ? $settings['aceWrapRange'] : 80; ?>"> <?php echo __('columns'); ?>
                 </td>
                 <td class="help"><?php echo __('Wrap long lines'); ?></td>
             </tr>
@@ -173,5 +173,5 @@ $(document).ready(function(){
 });
 $('input, select').live('change', function(){
         updatePreview();
-})
+});
 </script>

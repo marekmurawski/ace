@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+.ace_editor {
+	position: relative;
+	width: 100%;
+	border: 1px solid #CCCCCC;
+}
+
+.ace_options label {
+	margin: 0 4px 0 20px;	
+}
+

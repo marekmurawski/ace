@@ -2,10 +2,10 @@
 /*
  * Wolf CMS - Content Management Simplified. <http://www.wolfcms.org>
  * Copyright (C) 2008-2010 Martijn van der Kleijn <martijn.niji@gmail.com>
- * 
+ *
  * Ace filter for Wolf CMS
  * Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.
- *  
+ *
  * @package Plugins
  * @subpackage ace
  *
@@ -13,7 +13,7 @@
  * @copyright Marek Murawski, 2012
  * @license http://www.gnu.org/licenses/gpl.html GPLv3 license
  * @license Ace http://opensource.org/licenses/BSD-3-Clause BSD
- * 
+ *
  */
 
 if (!defined('IN_CMS')) { exit(); }
@@ -25,15 +25,15 @@ class AceController extends PluginController {
         if ( ! AuthUser::isLoggedIn()) {
             redirect(get_url('login'));
         }
-        
+
         $this->setLayout('backend');
         $this->assignToLayout('sidebar', new View('../../plugins/ace/views/sidebar'));
     }
 
     public function index() {
         $this->settings();
-    }    
-    
+    }
+
     function settings() {
         $settings = Plugin::getAllSettings('ace');
 
@@ -49,7 +49,7 @@ class AceController extends PluginController {
                                 'modes'    => $this->getModes(),
                                 ));
     }
-    
+
     public function save() {
       $configFile = PLUGINS_ROOT.DS.'ace'.DS.'ace_config.js';
       echo PLUGINS_ROOT.DS.'ace'.DS.'ace_config.js'.'<br/>';
@@ -59,8 +59,10 @@ class AceController extends PluginController {
          *  IT SHOULD BE WRITABLE FOR PHP - chmod 0777
          *  DO NOT MODIFY THESE SETTINGS MANUALLY
          */
-           
+
         var aceMode = "'. strip_tags($_POST['aceMode']) .'";
+        var aceStrMode = "'. __('Mode') .'";
+        var aceStrConfig = "'. __('Config') .'";
         var aceTheme = "'. strip_tags($_POST['aceTheme']) .'";
         var aceFontSize = '. intval($_POST['aceFontSize']) .';
         var aceScrollSpeed = '. intval($_POST['aceScrollSpeed']) .';
@@ -75,8 +77,8 @@ class AceController extends PluginController {
         if (file_exists($configFile)) {
             if (@!chmod($configFile, octdec('0777')))
                 Flash::set('error', __('Could not change ace_config.js file permissions to 0777. Do it manually!'));
-        }      
-      
+        }
+
       if (file_put_contents($configFile, $conf)) {
         if (Plugin::setAllSettings($_POST, 'ace')) {
             Flash::set('success', __('Ace - settings saved!'));
@@ -86,8 +88,8 @@ class AceController extends PluginController {
       } else {
         Flash::set('error', __('Ace - unable to save ace_config.js file. Check permissions!'));
       }
-        redirect(get_url('plugin/ace/settings'));        
-	}	    	
+        redirect(get_url('plugin/ace/settings'));
+	}
 
     /**
      * getModes
@@ -96,7 +98,7 @@ class AceController extends PluginController {
     protected function getThemes()
     {
     	$scandir = scandir(ACEDIR.'/build/src-min/');
-    	
+
     	foreach($scandir as $k => $v)
     	{
     		if($v != '.' && $v != '..' && startsWith($v, 'theme-'))
@@ -105,8 +107,8 @@ class AceController extends PluginController {
                 $themes[$v]['label'] = Inflector::humanize(str_replace('.js','',str_replace('theme-','',$v)));
     		}
     	}
-    	return $themes;    
-    }    
+    	return $themes;
+    }
     /**
      * getModes
      *
@@ -114,7 +116,7 @@ class AceController extends PluginController {
     protected function getModes()
     {
     	$scandir = scandir(ACEDIR.'/build/src-min/');
-    	
+
     	foreach($scandir as $k => $v)
     	{
     		if($v != '.' && $v != '..' && startsWith($v, 'mode-'))
@@ -123,6 +125,6 @@ class AceController extends PluginController {
                 $modes[$v]['label'] = Inflector::humanize(str_replace('.js','',str_replace('mode-','',$v)));
     		}
     	}
-    	return $modes;    
-    }    
+    	return $modes;
+    }
 }
