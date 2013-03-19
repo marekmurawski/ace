@@ -27,7 +27,6 @@ return array(
     '10 Years' => '10 Jahre',
     '2 Days' => '2 Tage',
     '2 Weeks' => '2 Wochen',
-    '<b>Note:</b> it may be neccesary to <b>hit F5</b> in editing pages in order to apply the new settings' => '<b>Hinweis:</b> Es kann notwendig sein, beim Bearbeiten von Seiten <b>F5 zu drücken</b>, um die neuen Einstellungen anzuwenden',
     'Ace - plugin settings initialized.' => 'Ace - Plugin-Einstellungen initialisiert.',
     'Ace - settings saved!' => 'Ace - Einstellungen gespeichert!',
     'Ace - unable to save ace_config.js file. Check permissions!' => 'Ace - Speichern in Datei ace_config.js war nicht möglich. Überprüfen Sie die Berechtigungen!',
@@ -71,5 +70,4 @@ return array(
 		'Wrap lines' => 'Zeilen umbrechen',
     'Wrap long lines' => 'Lange Zeilen umbrechen',
     'Yes' => 'Ja',
-    'You can obtain other themes at.' => '', # 'Sie können andere Designs bekommen bei.',
 );

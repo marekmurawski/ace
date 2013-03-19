@@ -27,7 +27,6 @@ return array(
     '10 Years' => '10 jaar',
     '2 Days' => '2 dagen',
     '2 Weeks' => '2 weken',
-    '<b>Note:</b> it may be neccesary to <b>hit F5</b> in editing pages in order to apply the new settings' => '<b>Let op:</b> mogelijk dient u <b>F5</b> in te drukken om de nieuwe instellingen toe te passen',
     'Ace - plugin settings initialized.' => 'Ace - plugin settings initialized.',
     'Ace - settings saved!' => 'Ace - instellingen opgeslagen!',
     'Ace - unable to save ace_config.js file. Check permissions!' => 'Ace - het bestand ace_config.js kon niet worden opgeslagen. Controleer de permissies!',
@@ -65,6 +64,5 @@ return array(
     'Wrap lines' => 'Automatische terugloop',
     'Wrap long lines' => '',
     'Yes' => 'Ja',
-    'You can obtain other themes at.' => '',
     'unable to retrieve plugin settings.' => 'plugin instellingen konden niet worden opgehaald.',
 );

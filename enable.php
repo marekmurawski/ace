@@ -18,16 +18,16 @@
 /* Security measure */
 if (!defined('IN_CMS')) { exit(); }
 
-    $settings = array('aceMode' => 'php',
-                      'aceTheme' => 'monokai',
-                      'aceFontSize' => 12,
-                      'aceScrollSpeed' => 6,
-                      'aceEditorHeight' => 400,
-                      'aceWrapLines' => 'true',
-                      'aceWrapRange' => 80,
-                      'aceLayoutIntegrate' => 'true',
-                      'aceHighlightActiveLine' => 'true',
-                      'aceCookieLife' => '365',  // in days, -1 defaults to Session cookie
+    $settings = array('mode' => 'php',
+                      'theme' => 'monokai',
+                      'fontsize' => 12,
+                      'scrollspeed' => 6,
+                      'editorheight' => 400,
+                      'wraplines' => 'true',
+                      'wraprange' => 80,
+                      'layoutintegrate' => 1,
+                      'highlightactiveline' => 1,
+                      'cookielife' => '365',  // in days, -1 defaults to Session cookie
     );
 
     // Store settings.

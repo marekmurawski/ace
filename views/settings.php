@@ -18,29 +18,31 @@
 /* Security measure */
 if (!defined('IN_CMS')) { exit(); }
 ?>
+<?php Observer::notify('mm_core_stylesheet'); ?>
 <h1><?php echo __('Ace settings');?></h1>
+<div id="mm_plugin">
 <form action="<?php echo get_url('plugin/ace/save'); ?>" method="post">
     <fieldset>
       <legend style="margin-left: 1em;"><strong><?php echo __('Look and feel'); ?></strong></legend>
         <table class="fieldset" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td class="label"><label><?php echo __('Theme'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Theme'); ?> </label></td>
                 <td class="field">
-                  <select name="aceTheme" id="aceTheme">
+                  <select name="theme" id="theme">
                     <?php foreach ($themes as $id => $value): ?>
-                    <option value="<?php echo $value['id'] ?>"<?php echo (isset($settings['aceTheme'])&&($settings['aceTheme']==$value['id'])) ? 'selected="selected"' : ''; ?>><?php echo $value['label'] ?></option>
+                    <option value="<?php echo $value['id'] ?>"<?php echo (isset($settings['theme'])&&($settings['theme']==$value['id'])) ? 'selected="selected"' : ''; ?>><?php echo $value['label'] ?></option>
                     <?php endforeach; ?>
                   </select>
                 
                 </td>
-                <td class="help"><?php echo __('You can obtain other themes at.'); ?></td>
+                <td class="help"></td>
             </tr>
             <tr>
-                <td class="label"><label><?php echo __('Mode'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Mode'); ?> </label></td>
                 <td class="field">
-                  <select name="aceMode" id="aceMode">
+                  <select name="mode" id="mode">
                     <?php foreach ($modes as $id => $value): ?>
-                    <option value="<?php echo $value['id'] ?>"<?php echo (isset($settings['aceMode'])&&($settings['aceMode']==$value['id'])) ? 'selected="selected"' : ''; ?>><?php echo $value['label'] ?></option>
+                    <option value="<?php echo $value['id'] ?>"<?php echo (isset($settings['mode'])&&($settings['mode']==$value['id'])) ? 'selected="selected"' : ''; ?>><?php echo $value['label'] ?></option>
                     <?php endforeach; ?>
                   </select>
                 
@@ -48,46 +50,46 @@ if (!defined('IN_CMS')) { exit(); }
                 <td class="help"><?php echo __('Select default syntax highlighting mode'); ?></td>
             </tr>
             <tr>
-                <td class="label"><label><?php echo __('Font size'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Font size'); ?> </label></td>
                 <td class="field">
-                  <input type="number" id="aceFontSize" name="aceFontSize" min="7" max="18" step="1" value="<?php echo isset($settings['aceFontSize']) ? $settings['aceFontSize'] : 11; ?>"> <?php echo __('px'); ?>
+                  <input type="number" id="fontsize" name="fontsize" min="7" max="18" step="1" value="<?php echo isset($settings['fontsize']) ? $settings['fontsize'] : 11; ?>"> <?php echo __('px'); ?>
                 </td>
                 <td class="help"><?php echo __('Editor font size in pixels.'); ?></td>
             </tr>
             <tr>
-                <td class="label"><label><?php echo __('Mouse scroll speed'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Mouse scroll speed'); ?> </label></td>
                 <td class="field">
-                  <input type="number" id="aceScrollSpeed" name="aceScrollSpeed" min="1" max="10" step="1" value="<?php echo isset($settings['aceScrollSpeed']) ? $settings['aceScrollSpeed'] : 3; ?>"> <?php echo __('lines'); ?>
+                  <input type="number" id="scrollspeed" name="scrollspeed" min="1" max="10" step="1" value="<?php echo isset($settings['scrollspeed']) ? $settings['scrollspeed'] : 3; ?>"> <?php echo __('lines'); ?>
                 </td>
                 <td class="help"><?php echo __('How fast should your mousewheel scroll the editor'); ?></td>
             </tr>
             <tr>
-                <td class="label"><label><?php echo __('Editor height'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Editor height'); ?> </label></td>
                 <td class="field">
-                  <input type="number" id="aceEditorHeight" name="aceEditorHeight" min="100" max="1000" step="10" value="<?php echo isset($settings['aceEditorHeight']) ? $settings['aceEditorHeight'] : 300; ?>"> <?php echo __('px'); ?>
+                  <input type="number" id="editorheight" name="editorheight" min="100" max="1000" step="10" value="<?php echo isset($settings['editorheight']) ? $settings['editorheight'] : 300; ?>"> <?php echo __('px'); ?>
                 </td>
                 <td class="help"><?php echo __('Default editor box height in pixels'); ?></td>
             </tr>
             <tr>
-                <td class="label"><label><?php echo __('Highlight active line'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Highlight active line'); ?> </label></td>
                 <td class="field">
-                  <select name="aceHighlightActiveLine" id="aceHighlightActiveLine">
-                    <option value="true" <?php echo (isset($settings['aceHighlightActiveLine'])&&($settings['aceHighlightActiveLine']=='true')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes');?></option>
-                    <option value="false" <?php echo (isset($settings['aceHighlightActiveLine'])&&($settings['aceHighlightActiveLine']=='false')) ? 'selected="selected"' : ''; ?>><?php echo __('No');?></option>
+                  <select name="highlightactiveline" id="highlightactiveline">
+                    <option value="1" <?php echo (isset($settings['highlightactiveline'])&&($settings['highlightactiveline']=='1')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes');?></option>
+                    <option value="0" <?php echo (isset($settings['highlightactiveline'])&&($settings['highlightactiveline']=='0')) ? 'selected="selected"' : ''; ?>><?php echo __('No');?></option>
                   </select>
                 </td>
                 <td class="help"></td>
             </tr>
             <tr>
-                <td class="label"><label><?php echo __('Wrap lines'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Wrap lines'); ?> </label></td>
                 <td class="field">
-                  <select name="aceWrapLines" id="aceWrapLines">
-                    <option value="true" <?php echo (isset($settings['aceWrapLines'])&&($settings['aceWrapLines']=='true')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes');?></option>
-                    <option value="false" <?php echo (isset($settings['aceWrapLines'])&&($settings['aceWrapLines']=='false')) ? 'selected="selected"' : ''; ?>><?php echo __('No');?></option>
+                  <select name="wraplines" id="wraplines">
+                    <option value="1" <?php echo (isset($settings['wraplines'])&&($settings['wraplines']=='1')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes');?></option>
+                    <option value="0" <?php echo (isset($settings['wraplines'])&&($settings['wraplines']=='0')) ? 'selected="selected"' : ''; ?>><?php echo __('No');?></option>
                   </select> <?php echo __('at'); ?> 
-                  <input type="number" id="aceWrapRange" name="aceWrapRange" min="20" max="200" step="4" value="<?php echo isset($settings['aceWrapRange']) ? $settings['aceWrapRange'] : 80; ?>"> <?php echo __('columns'); ?>
+                  <input type="number" id="wraprange" name="wraprange" min="20" max="200" step="4" value="<?php echo isset($settings['wraprange']) ? $settings['wraprange'] : 80; ?>"> <?php echo __('columns'); ?>
                 </td>
-                <td class="help"><?php echo __('Wrap long lines'); ?></td>
+                <td class="help wide"><?php echo __('Wrap long lines'); ?></td>
             </tr>
             <tr>
                 <td class="field" colspan="3">
@@ -105,17 +107,17 @@ if (!defined('IN_CMS')) { exit(); }
       <legend style="margin-left: 1em;"><strong><?php echo __('Cookies'); ?></strong></legend>
         <table class="fieldset" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td class="label"><label><?php echo __('How long to store scroll and mode settings?'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('How long to store scroll and mode settings?'); ?> </label></td>
                 <td class="field">
-                  <select name="aceCookieLife" id="aceCookieLife">
-                    <option value="-1" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='-1')) ? 'selected="selected"' : ''; ?>><?php echo __('Session-long'); ?></option>
-                    <option value="1" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='1')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Day'); ?></option>
-                    <option value="2" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='2')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Days'); ?></option>
-                    <option value="7" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='7')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Week'); ?></option>
-                    <option value="14" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='14')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Weeks'); ?></option>
-                    <option value="28" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='28')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Month'); ?></option>
-                    <option value="365" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='365')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Year'); ?></option>
-                    <option value="3650" <?php echo (isset($settings['aceCookieLife'])&&($settings['aceCookieLife']=='3650')) ? 'selected="selected"' : ''; ?>><?php echo __('10 Years'); ?></option>
+                  <select name="cookielife" id="cookielife">
+                    <option value="-1" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='-1')) ? 'selected="selected"' : ''; ?>><?php echo __('Session-long'); ?></option>
+                    <option value="1" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='1')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Day'); ?></option>
+                    <option value="2" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='2')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Days'); ?></option>
+                    <option value="7" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='7')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Week'); ?></option>
+                    <option value="14" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='14')) ? 'selected="selected"' : ''; ?>><?php echo __('2 Weeks'); ?></option>
+                    <option value="28" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='28')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Month'); ?></option>
+                    <option value="365" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='365')) ? 'selected="selected"' : ''; ?>><?php echo __('1 Year'); ?></option>
+                    <option value="3650" <?php echo (isset($settings['cookielife'])&&($settings['cookielife']=='3650')) ? 'selected="selected"' : ''; ?>><?php echo __('10 Years'); ?></option>
                   </select>
                 </td>
                 <td class="help"><?php echo __('Individual settings for page parts, layouts and snippets - scroll position and syntax mode will be stored in cookie of your browser. Choose the default lifetime of such cookie.'); ?></td>
@@ -126,44 +128,42 @@ if (!defined('IN_CMS')) { exit(); }
       <legend style="margin-left: 1em;"><strong><?php echo __('Integration'); ?></strong></legend>
         <table class="fieldset" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td class="label"><label><?php echo __('Integrate Ace with Layout editing?'); ?> </label></td>
+                <td class="label wide"><label><?php echo __('Integrate Ace with Layout editing?'); ?> </label></td>
                 <td class="field">
-                  <select name="aceLayoutIntegrate" id="aceLayoutIntegrate">
-                    <option value="true" <?php echo (isset($settings['aceLayoutIntegrate'])&&($settings['aceLayoutIntegrate']=='true')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes'); ?></option>
-                    <option value="false" <?php echo (isset($settings['aceLayoutIntegrate'])&&($settings['aceLayoutIntegrate']=='false')) ? 'selected="selected"' : ''; ?>><?php echo __('No'); ?></option>
+                  <select name="layoutintegrate" id="layoutintegrate">
+                    <option value="1" <?php echo (isset($settings['layoutintegrate'])&&($settings['layoutintegrate']=='1')) ? 'selected="selected"' : ''; ?>><?php echo __('Yes'); ?></option>
+                    <option value="0" <?php echo (isset($settings['layoutintegrate'])&&($settings['layoutintegrate']=='0')) ? 'selected="selected"' : ''; ?>><?php echo __('No'); ?></option>
                   </select>
                 </td>
                 <td class="help"><?php echo __('Note that Ace won`t take precedence of other plugins being integrated with Layout (eg. Codemirror).'); ?></td>
             </tr>
         </table>
     </fieldset>
-    <p>
-        <?php echo __("<b>Note:</b> it may be neccesary to <b>hit F5</b> in editing pages in order to apply the new settings") ?>
-    </p>
     <p class="buttons">
         <input class="button" name="commit" type="submit" accesskey="s" value="<?php echo __('Save');?>" />
     </p>
 </form>
+</div>
 <script>
 var textarea = $('#previewTextarea');
 var editor = ace.edit('previewAce');
 
 function updatePreview() {
-        $('#acecontainer').css('height',$('#aceEditorHeight').val()+'px');
-        $('#previewAce').css('height',$('#aceEditorHeight').val()+'px');
-        editor.setTheme('ace/theme/'+$('#aceTheme').val());
+        $('#acecontainer').css('height',$('#editorheight').val()+'px');
+        $('#previewAce').css('height',$('#editorheight').val()+'px');
+        editor.setTheme('ace/theme/'+$('#theme').val());
         editor.setBehavioursEnabled(true);
-        editor.setScrollSpeed($('#aceScrollSpeed').val());
-        editor.setFontSize($('#aceFontSize').val()+'px');
+        editor.setScrollSpeed($('#scrollspeed').val());
+        editor.setFontSize($('#fontsize').val()+'px');
         
-        editor.setPrintMarginColumn($('#aceWrapRange').val());
-        doHighlight = ($('#aceHighlightActiveLine').val()=='true') ? true : false;
+        editor.setPrintMarginColumn($('#wraprange').val());
+        doHighlight = ($('#highlightactiveline').val()==='1') ? true : false;
         editor.setHighlightActiveLine(doHighlight);
         editor.setHighlightSelectedWord(true);
-        editor.getSession().setWrapLimitRange($('#aceWrapRange').val(),$('#aceWrapRange').val());
-        doWrap = ($('#aceWrapLines').val()=='true') ? true : false;
+        editor.getSession().setWrapLimitRange($('#wraprange').val(),$('#wraprange').val());
+        doWrap = ($('#wraplines').val()==='1') ? true : false;
         editor.getSession().setUseWrapMode(doWrap);
-        editor.getSession().setMode('ace/mode/'+$('#aceMode').val());
+        editor.getSession().setMode('ace/mode/'+$('#mode').val());
 }
 
 $(document).ready(function(){
