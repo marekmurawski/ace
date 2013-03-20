@@ -34,6 +34,18 @@ if ( !function_exists('boolval') ) {
 
 class AceController extends PluginController {
 
+    public static $usable_modes = array(
+                'text',
+                'css',
+                'html',
+                'javascript',
+                'json',
+                'markdown',
+                'php',
+                'textile',
+                'xml',
+    );
+
     public function __construct() {
         AuthUser::load();
         if ( !AuthUser::isLoggedIn() ) {

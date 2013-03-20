@@ -21,12 +21,13 @@ if ( !defined('IN_CMS') ) {
     exit();
 }
 
-$settings = array( 'mode'                => 'php',
+$settings = array(
+            'mode'                => 'php',
             'theme'               => 'monokai',
             'fontsize'            => 12,
             'scrollspeed'         => 6,
             'editorheight'        => 400,
-            'wraplines'           => 'true',
+            'wraplines'           => 'h',
             'wraprange'           => 80,
             'layoutintegrate'     => 1,
             'highlightactiveline' => 1,

@@ -44,7 +44,9 @@ if ( !defined('IN_CMS') ) {
                     <td class="field">
                         <select name="mode" id="mode">
                             <?php foreach ( $modes as $id => $value ): ?>
-                                <option value="<?php echo $value['id'] ?>"<?php echo (isset($settings['mode']) && ($settings['mode'] == $value['id'])) ? 'selected="selected"' : ''; ?>><?php echo $value['label'] ?></option>
+                                <?php if ( in_array($value['id'], AceController::$usable_modes) ): ?>
+                                    <option value="<?php echo $value['id'] ?>"<?php echo (isset($settings['mode']) && ($settings['mode'] == $value['id'])) ? 'selected="selected"' : ''; ?>><?php echo $value['label'] ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
 
