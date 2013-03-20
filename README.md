@@ -3,23 +3,25 @@ Ace filter for Wolf CMS
 
 Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.
 
+This plugin provides Ace editor usage for Wolf CMS page parts, layouts and snippets editing.
+
 Features
 --------
 
-* Multiple themes selection
-* css, html, javascript, json, markdown, php, text, textile and xml modes
-* custom ***font size***, ***line wrapping*** length, editor window height
-* integrates with ***page part, snippet*** and (optionally) ***layout*** editing windows
-* ***keeps scroll*** position in ***every*** editor instance
-* ***keeps cursor*** position in ***every*** editor instance
-* ***keeps syntax highlighting mode in every*** editor instance
-* ***live PHP syntax checking***
+- Multiple themes selection
+- css, html, javascript, json, markdown, php, text, textile and xml modes
+- custom **font size**, **line wrapping** length, editor window height
+- integrates with **page part, snippet** and (optionally) **layout** editing windows
+- **keeps scroll** position in **every** editor instance
+- **keeps cursor** position in **every** editor instance
+- **keeps syntax highlighting mode in every** editor instance
+- **live PHP syntax checking**
 
 
 Installation
 ------------
 
-Ace Plugin can be installed into your WolfCMS by uploading it to ***CMS_ROOT/wolf/plugins/ace/*** and enabling it in administration panel.
+Ace Plugin can be installed into your WolfCMS by uploading it to **CMS_ROOT/wolf/plugins/ace/** and enabling it in administration panel.
 
 Changelog
 ---------
