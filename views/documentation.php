@@ -16,14 +16,16 @@
  * 
  */
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+if ( !defined('IN_CMS') ) {
+    exit();
+}
 ?>
-<h1><?php echo __('Documentation');?></h1>
+<h1><?php echo __('Documentation'); ?></h1>
 <p>
     Apart from the normal TinyMCE usage, a few special features have been implemented which are described here in more detail.
     Please read carefully on how to use these features.
 </p>
-<h3><?php echo __('Internal pages listing');?></h3>
+<h3><?php echo __('Internal pages listing'); ?></h3>
 <p>
     This feature allows you to easily link to pages in Wolf CMS from within the TinyMCE editor.
 </p>

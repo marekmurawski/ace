@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Wolf CMS - Content Management Simplified. <http://www.wolfcms.org>
  * Copyright (C) 2008-2010 Martijn van der Kleijn <martijn.niji@gmail.com>
@@ -16,10 +17,12 @@
  * 
  */
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+if ( !defined('IN_CMS') ) {
+    exit();
+}
 
 
-if (Plugin::deleteAllSettings('ace') === false) {
+if ( Plugin::deleteAllSettings('ace') === false ) {
     Flash::set('error', __('Unable to delete plugin settings.'));
     redirect(get_url('setting'));
 }

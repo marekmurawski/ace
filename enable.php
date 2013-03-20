@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Wolf CMS - Content Management Simplified. <http://www.wolfcms.org>
  * Copyright (C) 2008-2010 Martijn van der Kleijn <martijn.niji@gmail.com>
@@ -16,24 +17,26 @@
  * 
  */
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+if ( !defined('IN_CMS') ) {
+    exit();
+}
 
-    $settings = array('mode' => 'php',
-                      'theme' => 'monokai',
-                      'fontsize' => 12,
-                      'scrollspeed' => 6,
-                      'editorheight' => 400,
-                      'wraplines' => 'true',
-                      'wraprange' => 80,
-                      'layoutintegrate' => 1,
-                      'highlightactiveline' => 1,
-                      'cookielife' => '365',  // in days, -1 defaults to Session cookie
-    );
+$settings = array( 'mode'                => 'php',
+            'theme'               => 'monokai',
+            'fontsize'            => 12,
+            'scrollspeed'         => 6,
+            'editorheight'        => 400,
+            'wraplines'           => 'true',
+            'wraprange'           => 80,
+            'layoutintegrate'     => 1,
+            'highlightactiveline' => 1,
+            'cookielife'          => '365', // in days, -1 defaults to Session cookie
+);
 
-    // Store settings.
-    if (Plugin::setAllSettings($settings, 'ace')) {
-            Flash::set('success', __('Ace - plugin settings initialized.'));
-    }
-    else
-        Flash::set('error', __('Ace - unable to store plugin settings!'));
+// Store settings.
+if ( Plugin::setAllSettings($settings, 'ace') ) {
+    Flash::set('success', __('Ace - plugin settings initialized.'));
+}
+else
+    Flash::set('error', __('Ace - unable to store plugin settings!'));
 ?>

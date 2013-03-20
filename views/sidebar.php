@@ -16,13 +16,15 @@
  * 
  */
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+if ( !defined('IN_CMS') ) {
+    exit();
+}
 ?>
 <p class="button"><a href="<?php echo get_url('plugin/ace/settings'); ?>"><img src="<?php echo URL_PUBLIC; ?>wolf/icons/settings-32.png" align="middle" /><?php echo __('Settings'); ?></a></p>
 <div class="box">
-<h2><?php echo Plugin::$plugins_infos['ace']->title;?></h2>
-<p>
-<?php echo __('Plugin').': <b>'. Plugin::$plugins_infos['ace']->version ?></b><br/>
-Ace: <b>0.2.0</b> <em>(2011.08.02)</em>
-</p>
+    <h2><?php echo Plugin::$plugins_infos['ace']->title; ?></h2>
+    <p>
+<?php echo __('Plugin') . ': <b>' . Plugin::$plugins_infos['ace']->version ?></b><br/>
+        Ace: <b>0.2.0</b> <em>(2011.08.02)</em>
+    </p>
 </div>

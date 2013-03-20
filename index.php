@@ -18,50 +18,50 @@
  */
 
 /* Security measure */
-if ( !defined( 'IN_CMS' ) ) {
+if ( !defined('IN_CMS') ) {
     exit();
 }
 
-if ( !defined( "ACEDIR" ) ) {
-    define( 'ACEDIR', PLUGINS_ROOT . '/ace' );
+if ( !defined("ACEDIR") ) {
+    define('ACEDIR', PLUGINS_ROOT . '/ace');
 }
 
-Plugin::setInfos( array(
+Plugin::setInfos(array(
             'id'                   => 'ace',
             'title'                => 'Ace filter for Wolf CMS',
-            'description'          => __( 'Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.' ),
+            'description'          => __('Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.'),
             'version'              => '0.0.7',
             'license'              => 'GPL',
             'author'               => 'Marek Murawski',
             'website'              => 'http://marekmurawski.pl/',
             'update_url'           => 'http://marekmurawski.pl/static/wolfplugins/plugin-versions.xml',
             'require_wolf_version' => '0.7.3' // 0.7.5SP-1 fix -> downgrading requirement to 0.7.3
-) );
+));
 
-if ( AuthUser::hasPermission( 'admin_view' ) && Plugin::isEnabled( 'ace' ) ) {
-    Filter::add( 'ace', 'ace/filter_ace.php' );
-    Plugin::addController( 'ace', 'ace', 'administrator,developer', true );
-    Observer::observe( 'view_backend_list_plugin', 'ace_make_settings_div' );
+if ( AuthUser::hasPermission('admin_view') && Plugin::isEnabled('ace') ) {
+    Filter::add('ace', 'ace/filter_ace.php');
+    Plugin::addController('ace', 'ace', 'administrator,developer', true);
+    Observer::observe('view_backend_list_plugin', 'ace_make_settings_div');
 
     $uri = $_SERVER['QUERY_STRING'];
-    if ( preg_match( '/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/', $uri, $match ) )
+    if ( preg_match('/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/', $uri, $match) )
         ace_include_javascripts();
 }
 
-function ace_make_settings_div( $plugin_name ) {
+function ace_make_settings_div($plugin_name) {
     if ( $plugin_name === 'ace' ) {
         echo '<div id="ace-live-settings" style="display: none;" ';
-        foreach ( Plugin::getAllSettings( 'ace' ) as $key => $value ) {
+        foreach ( Plugin::getAllSettings('ace') as $key => $value ) {
             echo ' data-' . $key . '="' . $value . '"';
         }
-        echo ' data-modelabel="' . __( 'Syntax' ) . '"';
-        echo ' data-wraplabel="' . __( 'Wrapping' ) . '"';
-        echo ' data-wrapnonelabel="' . __( 'don`t wrap' ) . '"';
-        echo ' data-wrapsoftlabel="' . __( 'to editor' ) . '"';
-        echo ' data-wraphardlabel="' . __( 'to margin' ) . '"';
-        echo ' data-fontsizelabel="' . __( 'Font size' ) . '"';
+        echo ' data-modelabel="' . __('Syntax') . '"';
+        echo ' data-wraplabel="' . __('Wrapping') . '"';
+        echo ' data-wrapnonelabel="' . __('don`t wrap') . '"';
+        echo ' data-wrapsoftlabel="' . __('to editor') . '"';
+        echo ' data-wraphardlabel="' . __('to margin') . '"';
+        echo ' data-fontsizelabel="' . __('Font size') . '"';
         echo ' data-iconsuri="' . PLUGINS_URI . 'ace/icons/' . '"';
-        echo ' data-controller-url="'.URI_PUBLIC . ADMIN_DIR . '/plugin/ace"';
+        echo ' data-controller-url="' . URI_PUBLIC . ADMIN_DIR . '/plugin/ace"';
         echo '></div>';
     }
 
@@ -69,7 +69,7 @@ function ace_make_settings_div( $plugin_name ) {
 
 
 function ace_include_javascripts() {
-    Plugin::addJavascript( 'ace', 'ace_editor.js' );
-    Plugin::addJavascript( 'ace', 'build/src-min/ace.js' );
+    Plugin::addJavascript('ace', 'ace_editor.js');
+    Plugin::addJavascript('ace', 'build/src-min/ace.js');
 
 }
