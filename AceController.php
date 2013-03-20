@@ -79,7 +79,7 @@ class AceController extends PluginController {
                     'mode'                => 'trim,strval',
                     'scrollspeed'         => 'intval',
                     'theme'               => 'trim,strval',
-                    'wraplines'           => 'intval',
+                    'wraplines'           => 'trim,strval',
                     'wraprange'           => 'intval',
         );
         $newSettings      = array( );

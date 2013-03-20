@@ -44,12 +44,8 @@ if ( AuthUser::hasPermission( 'admin_view' ) && Plugin::isEnabled( 'ace' ) ) {
     Observer::observe( 'view_backend_list_plugin', 'ace_make_settings_div' );
 
     $uri = $_SERVER['QUERY_STRING'];
-    if ( preg_match( '/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/', $uri, $match ) ) {
-        Plugin::addJavascript( 'ace', 'ace_editor.js' );
-        Plugin::addJavascript( 'ace', 'build/src-min/ace.js' );
-        Plugin::addJavascript( 'ace', 'ace_config.js' );
-        Plugin::addJavascript( 'ace', 'js/jquery.cookie.js' );
-    }
+    if ( preg_match( '/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/', $uri, $match ) )
+        ace_include_javascripts();
 }
 
 function ace_make_settings_div( $plugin_name ) {
@@ -58,16 +54,22 @@ function ace_make_settings_div( $plugin_name ) {
         foreach ( Plugin::getAllSettings( 'ace' ) as $key => $value ) {
             echo ' data-' . $key . '="' . $value . '"';
         }
-        echo ' data-modelabel="' . __( 'Mode' ) . '"';
-        echo ' data-iconsuri="' . PLUGINS_URI.'ace/icons/' . '"';
+        echo ' data-modelabel="' . __( 'Syntax' ) . '"';
+        echo ' data-wraplabel="' . __( 'Wrapping' ) . '"';
+        echo ' data-wrapnonelabel="' . __( 'don`t wrap' ) . '"';
+        echo ' data-wrapsoftlabel="' . __( 'to editor' ) . '"';
+        echo ' data-wraphardlabel="' . __( 'to margin' ) . '"';
+        echo ' data-fontsizelabel="' . __( 'Font size' ) . '"';
+        echo ' data-iconsuri="' . PLUGINS_URI . 'ace/icons/' . '"';
+        echo ' data-controller-url="' . get_url( 'plugin/ace' ) . '"';
         echo '></div>';
     }
 
 }
 
+
 function ace_include_javascripts() {
-        Plugin::addJavascript( 'ace', 'ace_editor.js' );
-        Plugin::addJavascript( 'ace', 'build/src-min/ace.js' );
-        Plugin::addJavascript( 'ace', 'ace_config.js' );
-        Plugin::addJavascript( 'ace', 'js/jquery.cookie.js' );
+    Plugin::addJavascript( 'ace', 'ace_editor.js' );
+    Plugin::addJavascript( 'ace', 'build/src-min/ace.js' );
+
 }

@@ -25,23 +25,41 @@ var ace_debug_mode = true;
  */
 function insertModeChange(id, modeSibling) {
     if ($('#aceoptions' + id).length == 0) {
+        $liveSettings = $('#ace-live-settings');
         modeSibling.after(
                 '<span id="aceoptions' + id + '" class="ace_options">' +
                 '<label for="acemode_select_' + id + '" ' +
-                'id="acemode_label_' + id + '">' + $('#ace-live-settings').attr('data-modelabel') + '</label>' +
+                'id="acemode_label_' + id + '">' + $liveSettings.attr('data-modelabel') + '</label>' +
                 '<select id="acemode_select_' + id + '">' +
-                '<option value="text">Plain text</option>' +
-                '<option value="css">CSS</option>' +
-                '<option value="html">HTML</option>' +
-                '<option value="javascript">Javascript</option>' +
-                '<option value="json">JSON</option>' +
-                '<option value="markdown">Markdown</option>' +
-                '<option value="php">PHP</option>' +
-                '<option value="textile">Textile</option>' +
-                '<option value="xml">XML</option>' +
+                '  <option value="text">Plain text</option>' +
+                '  <option value="css">CSS</option>' +
+                '  <option value="html">HTML</option>' +
+                '  <option value="javascript">Javascript</option>' +
+                '  <option value="json">JSON</option>' +
+                '  <option value="markdown">Markdown</option>' +
+                '  <option value="php">PHP</option>' +
+                '  <option value="textile">Textile</option>' +
+                '  <option value="xml">XML</option>' +
                 '</select> ' +
-                '<span class="ace_hwrap_btn" id="ace_hwrap_' + id + '">wrap</span> ' +
-                '<span class="ace_resize_btn" id="ace_resize_' + id + '">resize</span> ' +
+                '<label for="ace_wrap_tb' + id + '">' + $liveSettings.attr('data-wraplabel') + '</label>' +
+                '<select class="ace_wrap_tb" id="ace_wrap_tb' + id + '" >' +
+                '  <option value="n">' + $liveSettings.attr('data-wrapnonelabel') + '</option>' +
+                '  <option value="h">' + $liveSettings.attr('data-wraphardlabel') + '</option>' +
+                '  <option value="s">' + $liveSettings.attr('data-wrapsoftlabel') + '</option>' +
+                '</select> ' +
+                '<label for="ace_font_size_tb' + id + '">' + $('#ace-live-settings').attr('data-fontsizelabel') + '</label>' +
+                '<select class="ace_font_size_tb" id="ace_font_size_tb' + id + '" >' +
+                '  <option value="7">7px</option>' +
+                '  <option value="8">8px</option>' +
+                '  <option value="9">9px</option>' +
+                '  <option value="10">10px</option>' +
+                '  <option value="11">11px</option>' +
+                '  <option value="12">12px</option>' +
+                '  <option value="14">14px</option>' +
+                '  <option value="16">16px</option>' +
+                '</select> ' +
+                '<a href="' + $liveSettings.attr('data-controller-url') + '" target="_blank" title=""><img src="' + $liveSettings.attr('data-iconsuri') + '/settings.png"/></a>' +
+                '<span style="display: none" class="ace_resize_tb" id="ace_resize_tb' + id + '">resize</span> ' +
                 '</span>');
     }
 }
@@ -80,7 +98,7 @@ function setupEditor(id, modeSibling, textareaElement, options) {
         'cookielife': $liveSettings.attr('data-cookielife')
     };
 
-    /*
+    /**
      * pre-configure cookie storage
      */
     if ((options.hasOwnProperty('cookielife')) && (options.cookielife !== '-1')) {
@@ -156,33 +174,46 @@ function setupEditor(id, modeSibling, textareaElement, options) {
     var ed = ace.edit('aceeditor' + id);
 
 
+    // display styles setup
     ed.setTheme('ace/theme/' + config.theme);
     ed.setBehavioursEnabled(true);
     ed.setScrollSpeed(config.scrollspeed);
     ed.setFontSize(config.fontsize + 'px');
+    $('#ace_font_size_tb' + id).val(config.fontsize);
     ed.setPrintMarginColumn(config.wraprange);
     ed.setHighlightActiveLine(config.highlightactiveline);
     ed.setHighlightSelectedWord(true);
 
-
+    // hide textarea and copy it's contents
     var textarea = $(textareaElement);
     textarea.hide();
     ed.getSession().setValue(textarea.val());
 
-    ed.getSession().setWrapLimitRange(config.wraprange, config.wraprange);
-    ed.getSession().setWrapLimitRange(null);
-    ed.getSession().setUseWrapMode(config.wraplines);
+    // wrapping setup
+    if (config.wraplines === 'n') {
+        $('#ace_wrap_tb' + id).val('n');
+        ed.getSession().setUseWrapMode(false);
+    } else if (config.wraplines === 'h') {
+        ed.getSession().setWrapLimitRange(config.wraprange, config.wraprange);
+        ed.getSession().setUseWrapMode(true);
+    } else if (config.wraplines === 's') {
+        ed.getSession().setWrapLimitRange(null);
+        ed.getSession().setUseWrapMode(true);
+    }
 
-
+    // setup mode
     $('#acemode_select_' + id).val(config.mode);
     ed.getSession().setMode('ace/mode/' + config.mode);
 
+    // setup selection and scroll position
     if (idCookie !== null)
         ed.gotoLine(idCookie.row + 1, idCookie.column);
-
     if (idCookie !== null)
         ed.getSession().setScrollTop(idCookie.scroll);
 
+    /**
+     * ACE editor event handlers
+     */
     ed.getSession().on('change', function() {
         textarea.val(ed.getSession().getValue());
         somethingChanged = true;
@@ -211,16 +242,29 @@ function setupEditor(id, modeSibling, textareaElement, options) {
     /**
      * Toolbar buttons and input handlers
      */
-
-    $('#acemode_select_' + id).live('change', function() {
+    $(document).delegate('#acemode_select_' + id, 'change', function() {
         ed.getSession().setMode('ace/mode/' + $(this).val());
     });
 
-    $('#ace_resize_' + id).live('click', function() {
+    $(document).delegate('#ace_resize_tb' + id, 'click', function() {
         ed.resize();
     });
 
+    $(document).delegate('#ace_wrap_tb' + id, 'change', function() {
+        if ($(this).val() === 'n') {
+            ed.getSession().setUseWrapMode(false);
+        } else if ($(this).val() === 's') {
+            ed.getSession().setUseWrapMode(true);
+            ed.getSession().setWrapLimitRange(null);
+        } else if ($(this).val() === 'h') {
+            ed.getSession().setUseWrapMode(true);
+            ed.getSession().setWrapLimitRange(config.wraprange, config.wraprange);
+        }
+    });
 
+    $(document).delegate('#ace_font_size_tb' + id, 'change', function() {
+        ed.setFontSize($(this).val() + 'px');
+    });
 //    ed.focus();
 
     return ed;
@@ -233,11 +277,8 @@ function setupEditor(id, modeSibling, textareaElement, options) {
  */
 function insertPageAce(partElement) {
     var partId = partElement.attr('id').slice(5, -8);
-
     var pId = 'P' + window.location.pathname.split("/").pop() + '-' + partId;
-
     var ed = setupEditor(pId, $('#part_' + partId + '_filter_id'), $('#part_' + partId + '_content'));
-    //alert(pId);
     if ($('#page_title').val().trim().length > 0)
         ed.focus();
 }
@@ -283,8 +324,6 @@ function insertLayoutAce() {
  * main initialization
  */
 $(document).ready(function() {
-
-
     // the filter select changes from some state
     $('.filter-selector').live('wolfSwitchFilterOut', function(event, filtername, elem) {
         if (filtername === 'ace') {
@@ -311,11 +350,10 @@ $(document).ready(function() {
     });
 
     // we are in LAYOUT
-    // what does setCM means?
+    // setCM indicates if CodeMirror is already active
     if (($("#body_layout_edit").length > 0) && (typeof(setCM) == 'undefined') && ($('#ace-live-settings').attr('data-layoutintegrate') !== '0')) {
         insertLayoutAce();
     }
-
 });
 
 
@@ -342,16 +380,11 @@ $(document).ready(function() {
             options = $.extend({}, config.defaults, options);
             if (value === null)
                 options.expires = -1;
-
-
             if (typeof options.expires === 'number') {
                 var days = options.expires, t = options.expires = new Date();
                 t.setDate(t.getDate() + days);
             }
-
             value = config.json ? JSON.stringify(value) : String(value);
-
-
             return (document.cookie = [
                 encodeURIComponent(key), '=', config.raw ? value : encodeURIComponent(value),
                 options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
@@ -360,7 +393,6 @@ $(document).ready(function() {
                 options.secure ? '; secure' : ''
             ].join(''));
         }
-
         // read
         var decode = config.raw ? raw : decoded;
         var cookies = document.cookie.split('; ');
@@ -370,7 +402,6 @@ $(document).ready(function() {
                 return config.json ? JSON.parse(cookie) : cookie;
             }
         }
-
         return null;
     };
     config.defaults = {};
@@ -381,5 +412,4 @@ $(document).ready(function() {
         }
         return false;
     };
-
 })(jQuery, document);
