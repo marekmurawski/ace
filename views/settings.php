@@ -99,9 +99,7 @@ if ( !defined('IN_CMS') ) {
                         <div id="acecontainer" style="position: relative; display:block; height: 100px; width: 100%; border: 1px solid #888;">
                             <div id="previewAce" style="width:100%; height: 100px">
                             </div></div>
-                        <textarea id="previewTextarea" style="display: none">
-                            <?php echo file_get_contents(realpath(PLUGINS_ROOT) . '/ace/AceController.php'); ?>
-                        </textarea>
+                        <textarea id="previewTextarea" style="display: none"><?php echo file_get_contents(realpath(PLUGINS_ROOT) . '/ace/AceController.php'); ?></textarea>
                     </td>
                 </tr>
             </table>
