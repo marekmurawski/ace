@@ -191,7 +191,6 @@ function setupEditor(id, modeSibling, textareaElement, options) {
 
     // wrapping setup
     if (config.wraplines === 'n') {
-        $('#ace_wrap_tb' + id).val('n');
         ed.getSession().setUseWrapMode(false);
     } else if (config.wraplines === 'h') {
         ed.getSession().setWrapLimitRange(config.wraprange, config.wraprange);
@@ -200,6 +199,7 @@ function setupEditor(id, modeSibling, textareaElement, options) {
         ed.getSession().setWrapLimitRange(null);
         ed.getSession().setUseWrapMode(true);
     }
+    $('#ace_wrap_tb' + id).val(config.wraplines);
 
     // setup mode
     $('#acemode_select_' + id).val(config.mode);

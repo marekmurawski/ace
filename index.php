@@ -61,7 +61,7 @@ function ace_make_settings_div( $plugin_name ) {
         echo ' data-wraphardlabel="' . __( 'to margin' ) . '"';
         echo ' data-fontsizelabel="' . __( 'Font size' ) . '"';
         echo ' data-iconsuri="' . PLUGINS_URI . 'ace/icons/' . '"';
-        echo ' data-controller-url="' . get_url( 'plugin/ace' ) . '"';
+        echo ' data-controller-url="'.URI_PUBLIC . ADMIN_DIR . '/plugin/ace"';
         echo '></div>';
     }
 
