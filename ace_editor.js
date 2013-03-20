@@ -15,7 +15,7 @@
  *
  */
 
-var ace_debug_mode = true;
+var ace_debug_mode = false;
 
 /**
  * Creates select element to change Ace mode
@@ -325,7 +325,8 @@ function insertLayoutAce() {
  */
 $(document).ready(function() {
     // the filter select changes from some state
-    $('.filter-selector').live('wolfSwitchFilterOut', function(event, filtername, elem) {
+    $(document).delegate('.filter-selector', 'wolfSwitchFilterOut', function(event, filtername, elem) {
+    //$('.filter-selector').live('wolfSwitchFilterOut', function(event, filtername, elem) {
         if (filtername === 'ace') {
             $('#' + elem.attr('id')).show();
             if ($('#body_page_edit').length > 0) { // we are in PAGE
@@ -338,7 +339,7 @@ $(document).ready(function() {
     });
 
     // the filter select changes to some state
-    $('.filter-selector').live('wolfSwitchFilterIn', function(event, filtername, elem) {
+    $(document).delegate('.filter-selector', 'wolfSwitchFilterIn', function(event, filtername, elem) {
         if (filtername === 'ace') {
             if ($('#body_page_edit').length > 0) { // we are in PAGE
                 insertPageAce(elem);
