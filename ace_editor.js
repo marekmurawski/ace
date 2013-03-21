@@ -239,6 +239,31 @@ function setupEditor(id, modeSibling, textareaElement, options) {
         makeAceCookie(id);
     });
 
+    ed.commands.addCommand({
+        name: 'Bold',
+        bindKey: {win: 'Ctrl-B', mac: 'Command-B'},
+        exec: function(ed) {
+            op='<strong>'; cl='</strong>';
+            if (ed.session.getMode().$id === 'ace/mode/markdown') {op='**'; cl='**';}
+            if (ed.session.getMode().$id === 'ace/mode/textile') {op='*'; cl='*';}
+            text = ed.session.getTextRange(ed.getSelectionRange());
+            ed.insert(op + text + cl);
+            ed.selection.moveCursorBy(0, -cl.length);
+        }
+    });
+    ed.commands.addCommand({
+        name: 'Italic',
+        bindKey: {win: 'Ctrl-I', mac: 'Command-I'},
+        exec: function(ed) {
+            op='<em>'; cl='</em>';
+            if (ed.session.getMode().$id === 'ace/mode/markdown') {op='*'; cl='*';}
+            if (ed.session.getMode().$id === 'ace/mode/textile') {op='_'; cl='_';}
+            text = ed.session.getTextRange(ed.getSelectionRange());
+            ed.insert(op + text + cl);
+            ed.selection.moveCursorBy(0, -cl.length);
+        }
+    });
+
     /**
      * Toolbar buttons and input handlers
      */
@@ -326,7 +351,7 @@ function insertLayoutAce() {
 $(document).ready(function() {
     // the filter select changes from some state
     $(document).delegate('.filter-selector', 'wolfSwitchFilterOut', function(event, filtername, elem) {
-    //$('.filter-selector').live('wolfSwitchFilterOut', function(event, filtername, elem) {
+        //$('.filter-selector').live('wolfSwitchFilterOut', function(event, filtername, elem) {
         if (filtername === 'ace') {
             $('#' + elem.attr('id')).show();
             if ($('#body_page_edit').length > 0) { // we are in PAGE
