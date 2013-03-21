@@ -223,8 +223,10 @@ function setupEditor(id, modeSibling, textareaElement, options) {
     });
 
     ed.on('blur', function() {
-        if (somethingChanged)
+        if (somethingChanged) {
             textarea.trigger('change');
+            somethingChanged = false;
+        }
     });
 
     ed.getSession().on('changeScrollTop', function() {
