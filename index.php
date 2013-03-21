@@ -40,7 +40,7 @@ Plugin::setInfos(array(
 
 if ( AuthUser::hasPermission('admin_view') && Plugin::isEnabled('ace') ) {
     Filter::add('ace', 'ace/filter_ace.php');
-    Plugin::addController('ace', 'ace', 'administrator,developer', true);
+    Plugin::addController('ace', 'ace', 'admin_view', true);
     Observer::observe('view_backend_list_plugin', 'ace_make_settings_div');
 
     $uri = $_SERVER['QUERY_STRING'];
