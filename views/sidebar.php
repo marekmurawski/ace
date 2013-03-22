@@ -28,4 +28,5 @@ if ( !defined('IN_CMS') ) {
         Ace: <b>0.2.0</b> <em>(build 2013.03.14)</em>
     </p>
 </div>
-<div style="clear: both; text-align: right;"><small><p>&copy; <a href="http://marekmurawski.pl" target="_blank" />Marek Murawski</a></p> </small></div>
+    <div style="clear: both; text-align: right;"><small><p>&copy; <a href="http://marekmurawski.pl" target="_blank" />Marek Murawski</a><br/>
+    <a href="http://marekmurawski.pl/en/web/wolf-cms/plugins/ace.html" target="_blank" />[plugin homepage]</a></p></small></div>
