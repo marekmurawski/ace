@@ -16,6 +16,7 @@
  */
 
 var ace_debug_mode = false;
+var last_focused_ace;
 
 /**
  * Creates select element to change Ace mode
@@ -227,6 +228,7 @@ function setupEditor(id, modeSibling, textareaElement, options) {
             textarea.trigger('change');
             somethingChanged = false;
         }
+        last_focused_ace = ed;
     });
 
     ed.getSession().on('changeScrollTop', function() {
