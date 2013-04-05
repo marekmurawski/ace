@@ -38,7 +38,7 @@ Plugin::setInfos(array(
             'require_wolf_version' => '0.7.3' // 0.7.5SP-1 fix -> downgrading requirement to 0.7.3
 ));
 
-if ( AuthUser::hasPermission('admin_view') && Plugin::isEnabled('ace') ) {
+if ( Plugin::isEnabled('ace') ) {
     Filter::add('ace', 'ace/filter_ace.php');
     Plugin::addController('ace', 'ace', 'admin_view', true);
     Observer::observe('view_backend_list_plugin', 'ace_make_settings_div');
