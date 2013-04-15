@@ -30,7 +30,7 @@ Plugin::setInfos(array(
             'id'                   => 'ace',
             'title'                => 'Ace filter for Wolf CMS',
             'description'          => __('Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.'),
-            'version'              => '0.1.0',
+            'version'              => '0.1.1',
             'license'              => 'GPL',
             'author'               => 'Marek Murawski',
             'website'              => 'http://marekmurawski.pl/',
