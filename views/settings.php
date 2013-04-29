@@ -20,8 +20,8 @@ if ( !defined('IN_CMS') ) {
     exit();
 }
 ?>
-<?php Observer::notify('mm_core_stylesheet'); ?>
 <h1><?php echo __('Ace settings'); ?></h1>
+<?php Observer::notify('mm_core_stylesheet'); ?>
 <div id="mm_plugin">
     <form action="<?php echo get_url('plugin/ace/save'); ?>" method="post">
         <fieldset>
